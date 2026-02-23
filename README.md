@@ -1,36 +1,192 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💼 Rafael Nunes Neumann — Portfólio
 
-## Getting Started
+> Portfólio profissional desenvolvido com Next.js, apresentando minha trajetória, projetos e formas de contato.
 
-First, run the development server:
+---
+
+## 🚧 Status do Projeto
+
+[![Versão](https://img.shields.io/badge/Versão-v0.1.0-blue?style=for-the-badge)](https://github.com/rafaelneumann/portfolio)
+![Next.js](https://img.shields.io/badge/Next.js-16.1.6-007ec6?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-19.2.3-007ec6?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-007ec6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-007ec6?style=for-the-badge&logo=tailwindcss&logoColor=white)
+
+---
+
+## 📚 Índice
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Funcionalidades Principais](#-funcionalidades-principais)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Variáveis de Ambiente](#-variáveis-de-ambiente)
+- [Instalação e Execução](#-instalação-e-execução)
+- [Deploy](#-deploy)
+- [Estrutura de Pastas](#-estrutura-de-pastas)
+- [Autor](#-autor)
+
+---
+
+## 📝 Sobre o Projeto
+
+Portfólio pessoal desenvolvido para apresentar minha trajetória profissional, projetos e formas de contato. O site conta com suporte a múltiplos idiomas (PT/EN), tema claro/escuro e um formulário de contato funcional via Nodemailer.
+
+---
+
+## ✨ Funcionalidades Principais
+
+- 🌐 **Internacionalização (i18n):** Suporte completo a Português e Inglês via Context API.
+- 🌙 **Tema Claro/Escuro:** Alternância de tema com `next-themes`.
+- 🦾 **Seção Hero:** Apresentação com efeito de digitação animado e ícones de tecnologias.
+- 🗂️ **Projetos:** Timeline interativa com cards animados, imagens e tecnologias utilizadas.
+- 💼 **Experiências:** Timeline vertical com cards de cada empresa, período e responsabilidades.
+- 📬 **Formulário de Contato:** Envio de mensagens via SMTP com Nodemailer (API Route do Next.js).
+- 🎞️ **Animações:** Transições e microinterações com Framer Motion.
+
+---
+
+## 🛠 Tecnologias Utilizadas
+
+### 💻 Front-end
+
+| Tecnologia | Versão |
+| :--- | :--- |
+| Next.js | 16.1.6 |
+| React | 19.2.3 |
+| TypeScript | ^5 |
+| Tailwind CSS | ^4 |
+| Framer Motion | ^12 |
+| Radix UI | (Dialog, Dropdown, Slot, Toast) |
+| Lucide React | ^0.575.0 |
+| React Hook Form + Zod | ^7 / ^4 |
+| next-themes | ^0.4.6 |
+| simple-icons | ^16 |
+
+### 🖥️ Back-end (API Route)
+
+| Tecnologia | Descrição |
+| :--- | :--- |
+| Next.js API Routes | Endpoint de contato (`/api/contact`) |
+| Nodemailer | Envio de e-mails via SMTP |
+
+---
+
+## 🔑 Variáveis de Ambiente
+
+Crie um arquivo **`.env.local`** na raiz do projeto com as seguintes variáveis:
+
+```env
+# Configurações SMTP para o formulário de contato
+SMTP_HOST=smtp.seuservidor.com
+SMTP_PORT=587
+SMTP_USER=seu@email.com
+SMTP_PASS=sua_senha_aqui
+
+# E-mail destino das mensagens recebidas pelo formulário
+CONTACT_EMAIL=seu@email.com
+```
+
+> Para desenvolvimento, você pode usar serviços gratuitos como [Mailtrap](https://mailtrap.io) ou [Ethereal Email](https://ethereal.email).
+
+---
+
+## 🔧 Instalação e Execução
+
+### Pré-requisitos
+
+- **Node.js** v18 ou superior
+- **npm** ou **yarn**
+
+### Passos
+
+1. **Clone o repositório:**
+
+```bash
+git clone https://github.com/rafaelneumann/portfolio.git
+cd portfolio
+```
+
+2. **Instale as dependências:**
+
+```bash
+npm install
+```
+
+3. **Configure as variáveis de ambiente:**
+
+Crie o arquivo `.env.local` conforme descrito na seção acima.
+
+4. **Execute em modo de desenvolvimento:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🎨 O projeto estará disponível em **http://localhost:3000**.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Deploy
 
-## Learn More
+1. **Build de produção:**
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Deploy na Vercel (recomendado):**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+A forma mais simples é conectar o repositório à [Vercel](https://vercel.com) e configurar as variáveis de ambiente no painel do projeto em **Settings > Environment Variables**.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📂 Estrutura de Pastas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+.
+├── app/
+│   ├── globals.css           # Estilos globais e variáveis CSS
+│   ├── layout.tsx            # Layout raiz (metadados, providers)
+│   ├── page.tsx              # Página principal
+│   └── api/
+│       └── contact/
+│           └── route.ts      # API Route para o formulário de contato (Nodemailer)
+├── components/
+│   ├── Navbar.tsx            # Barra de navegação
+│   ├── HeroSection.tsx       # Seção inicial com animação de digitação
+│   ├── ProjectsSection.tsx   # Timeline de projetos
+│   ├── ExperienceSection.tsx # Timeline de experiências profissionais
+│   ├── ContactSection.tsx    # Formulário de contato e links sociais
+│   ├── Footer.tsx            # Rodapé
+│   └── ui/                   # Componentes de UI (badge, button, card, input, textarea)
+├── contexts/
+│   └── LangContext.tsx       # Context de internacionalização (PT/EN)
+├── lib/
+│   └── utils.ts              # Utilitários (cn, etc.)
+├── public/                   # Assets estáticos (imagens de projetos e logos)
+├── next.config.ts
+├── tsconfig.json
+└── package.json
+```
+
+---
+
+## 🎥 Demonstração
+
+### 🌐 Aplicação Web
+
+![Preview do Portfólio](public/portfolio-1.png)
+
+---
+
+## 👤 Autor
+
+| 👤 Nome | GitHub | 💼 LinkedIn |
+|---------|-----------------|-------------|
+| Rafael Nunes Neumann | [github.com/rafaelneumann](https://github.com/rafaelneumann) | [linkedin.com/in/rafaelneumann](https://www.linkedin.com/in/rafaelneumann) |
+
+---
+
+## 📄 Licença
+
+Este projeto é distribuído sob a **Licença MIT**.
