@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
+import emailjs from "@emailjs/browser"
 import { useLang } from "@/contexts/LangContext"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -72,15 +73,19 @@ export default function ContactSection() {
   const onSubmit = async (data: FormData) => {
     setStatus("sending")
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-      if (!res.ok) throw new Error("Failed")
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          from_name: data.name,
+          from_email: data.email,
+          message: data.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
       setStatus("success")
       reset()
-    } catch {
+    } catch (error){
       setStatus("error")
     }
     setTimeout(() => setStatus("idle"), 5000)
