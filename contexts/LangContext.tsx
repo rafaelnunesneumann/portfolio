@@ -72,6 +72,14 @@ interface Translations {
       github: string
     }
   }
+  resume: {
+    button: string
+    view: string
+    download: string
+    close: string
+    loading: string
+    fileName: string
+  }
   footer: {
     copy: string
   }
@@ -189,6 +197,14 @@ const pt: Translations = {
       github: "GitHub",
     },
   },
+  resume: {
+    button: "Currículo",
+    view: "Visualizar currículo",
+    download: "Baixar currículo",
+    close: "Fechar",
+    loading: "Carregando...",
+    fileName: "Résumé 2025 port.pdf",
+  },
   footer: {
     copy: "Desenvolvido com ♥ por Rafael Nunes Neumann",
   },
@@ -304,6 +320,14 @@ const en: Translations = {
       linkedin: "LinkedIn",
       github: "GitHub",
     },
+  },
+  resume: {
+    button: "Resume",
+    view: "View resume",
+    download: "Download resume",
+    close: "Close",
+    loading: "Loading...",
+    fileName: "Résumé 2025.pdf",
   },
   footer: {
     copy: "Built with ♥ by Rafael Nunes Neumann",

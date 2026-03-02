@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 import { motion, AnimatePresence } from "framer-motion"
-import { Moon, Sun, Menu, X } from "lucide-react"
+import { Moon, Sun, Menu, X, FileText } from "lucide-react"
 import { useLang } from "@/contexts/LangContext"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import ResumeModal from "@/components/ResumeModal"
 
 export default function Navbar() {
   const { t, lang, toggle: toggleLang } = useLang()
@@ -14,6 +15,7 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [resumeOpen, setResumeOpen] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -36,6 +38,7 @@ export default function Navbar() {
   }
 
   return (
+    <>
     <motion.header
       initial={mounted ? { y: -80, opacity: 0 } : false}
       animate={{ y: 0, opacity: 1 }}
@@ -73,6 +76,17 @@ export default function Navbar() {
                 {link.label}
               </motion.button>
             ))}
+
+            {/* Resume button — desktop */}
+            <motion.button
+              onClick={() => setResumeOpen(true)}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px hsl(var(--primary)/0.35)" }}
+              whileTap={{ scale: 0.95 }}
+              className="ml-2 flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-full bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] shadow-lg transition-all duration-200 cursor-pointer"
+            >
+              <FileText size={14} />
+              {t.resume.button}
+            </motion.button>
           </nav>
 
           {/* Actions */}
@@ -157,10 +171,25 @@ export default function Navbar() {
                   {link.label}
                 </motion.button>
               ))}
+
+              {/* Resume button — mobile */}
+              <motion.button
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: navLinks.length * 0.07 }}
+                onClick={() => { setMobileOpen(false); setResumeOpen(true) }}
+                className="mt-2 flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold rounded-lg bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] transition-all duration-200 cursor-pointer"
+              >
+                <FileText size={15} />
+                {t.resume.button}
+              </motion.button>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
     </motion.header>
+
+    <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
+  </>
   )
 }

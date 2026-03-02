@@ -3,7 +3,8 @@
 import { useRef, useState, useEffect } from "react"
 import { motion, useInView, type Variants } from "framer-motion"
 import { useLang } from "@/contexts/LangContext"
-import { ArrowDown } from "lucide-react"
+import { ArrowDown, FileText } from "lucide-react"
+import ResumeModal from "@/components/ResumeModal"
 import {
   siTypescript,
   siReact,
@@ -47,6 +48,7 @@ export default function HeroSection() {
   const { t } = useLang()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
+  const [resumeOpen, setResumeOpen] = useState(false)
 
   // Typing effect for the name
   const FULL_NAME = "Rafael Nunes Neumann"
@@ -183,6 +185,15 @@ export default function HeroSection() {
               {t.hero.cta}
             </motion.button>
             <motion.button
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px hsl(var(--primary)/0.2)" }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setResumeOpen(true)}
+              className="flex items-center gap-2 px-8 py-3 rounded-full border border-[hsl(var(--primary)/0.6)] text-[hsl(var(--foreground))] font-semibold text-sm hover:bg-[hsl(var(--primary)/0.08)] transition-all duration-300 cursor-pointer"
+            >
+              <FileText size={15} />
+              {t.resume.button}
+            </motion.button>
+            <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
@@ -301,6 +312,8 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </section>
+
+      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
     </>
   )
 }
