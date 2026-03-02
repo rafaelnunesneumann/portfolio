@@ -39,7 +39,8 @@ Portfólio pessoal desenvolvido para apresentar minha trajetória profissional, 
 - 🦾 **Seção Hero:** Apresentação com efeito de digitação animado e ícones de tecnologias.
 - 🗂️ **Projetos:** Timeline interativa com cards animados, imagens e tecnologias utilizadas.
 - 💼 **Experiências:** Timeline vertical com cards de cada empresa, período e responsabilidades.
-- 📬 **Formulário de Contato:** Envio de mensagens via SMTP com Nodemailer (API Route do Next.js).
+- � **Currículo:** Modal com visualização inline do PDF e download — exibe `Résumé 2025 port.pdf` em PT e `Résumé 2025.pdf` em EN.
+-  **Formulário de Contato:** Envio de mensagens via [EmailJS](https://www.emailjs.com/) diretamente do cliente, sem back-end próprio.
 - 🎞️ **Animações:** Transições e microinterações com Framer Motion.
 
 ---
@@ -61,12 +62,11 @@ Portfólio pessoal desenvolvido para apresentar minha trajetória profissional, 
 | next-themes | ^0.4.6 |
 | simple-icons | ^16 |
 
-### 🖥️ Back-end (API Route)
+### � Envio de E-mails
 
 | Tecnologia | Descrição |
 | :--- | :--- |
-| Next.js API Routes | Endpoint de contato (`/api/contact`) |
-| Nodemailer | Envio de e-mails via SMTP |
+| EmailJS (`@emailjs/browser`) | Envio de e-mails diretamente do cliente, sem back-end próprio |
 
 ---
 
@@ -75,17 +75,15 @@ Portfólio pessoal desenvolvido para apresentar minha trajetória profissional, 
 Crie um arquivo **`.env.local`** na raiz do projeto com as seguintes variáveis:
 
 ```env
-# Configurações SMTP para o formulário de contato
-SMTP_HOST=smtp.seuservidor.com
-SMTP_PORT=587
-SMTP_USER=seu@email.com
-SMTP_PASS=sua_senha_aqui
+# EmailJS — https://www.emailjs.com/
+# Encontre esses valores em: https://dashboard.emailjs.com
 
-# E-mail destino das mensagens recebidas pelo formulário
-CONTACT_EMAIL=seu@email.com
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=seu_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=seu_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=sua_public_key
 ```
 
-> Para desenvolvimento, você pode usar serviços gratuitos como [Mailtrap](https://mailtrap.io) ou [Ethereal Email](https://ethereal.email).
+> Os valores são obtidos no painel do [EmailJS](https://dashboard.emailjs.com): **Service ID** em *Email Services*, **Template ID** em *Email Templates* e **Public Key** em *Account > General*.
 
 ---
 
@@ -147,10 +145,7 @@ A forma mais simples é conectar o repositório à [Vercel](https://vercel.com) 
 ├── app/
 │   ├── globals.css           # Estilos globais e variáveis CSS
 │   ├── layout.tsx            # Layout raiz (metadados, providers)
-│   ├── page.tsx              # Página principal
-│   └── api/
-│       └── contact/
-│           └── route.ts      # API Route para o formulário de contato (Nodemailer)
+│   └── page.tsx              # Página principal
 ├── components/
 │   ├── Navbar.tsx            # Barra de navegação
 │   ├── HeroSection.tsx       # Seção inicial com animação de digitação
@@ -158,6 +153,7 @@ A forma mais simples é conectar o repositório à [Vercel](https://vercel.com) 
 │   ├── ExperienceSection.tsx # Timeline de experiências profissionais
 │   ├── ContactSection.tsx    # Formulário de contato e links sociais
 │   ├── Footer.tsx            # Rodapé
+│   ├── ResumeModal.tsx       # Modal de visualização e download do currículo (PT/EN)
 │   └── ui/                   # Componentes de UI (badge, button, card, input, textarea)
 ├── contexts/
 │   └── LangContext.tsx       # Context de internacionalização (PT/EN)
